@@ -14,7 +14,9 @@ export type PortfolioProject = {
 	publication: string;
 	description: string;
 	role: string;
+	approach?: string;
 	created: string;
+	tools?: string;
 	result?: string;
 	image: string;
 	alt: string;
@@ -30,10 +32,14 @@ export const projects: PortfolioProject[] = [
 		title: 'Nvidia crosses $4 trillion market value',
 		publication: 'The Wall Street Journal',
 		description:
-			'Fast-turn coverage of what Nvidia’s valuation milestone signaled for AI, investor sentiment, and broader tech markets.',
-		role: 'Designed and published three data graphics for breaking coverage under tight deadlines.',
-		created: 'Three data graphics for breaking Nvidia coverage.',
-		result: 'The visuals were featured on WSJ A1.',
+			'I created charts for breaking coverage of Nvidia crossing $4 trillion in market value.',
+		role: 'I designed and built the charts, working with the reporter and editors on the timeline and callouts.',
+		approach:
+			'I worked with the reporter and editors to decide which moments to show in the timeline and what to highlight with callouts. Since the story was breaking, I completed the charts in under two hours.',
+		created:
+			'I built the charts with WSJ’s in-house graphics tool, prepared different sizes in Illustrator, and used ai2html to make them responsive.',
+		tools: 'WSJ’s in-house graphics tool, Illustrator, and ai2html',
+		result: 'The charts ran with the story on WSJ’s A1 page online and in the print edition.',
 		image: nvidiaImage,
 		alt: 'Wall Street Journal story art about Nvidia crossing a $4 trillion market value',
 		href: 'https://www.wsj.com/tech/ai/nvidia-nvda-4-trillion-market-cap-466c1c9c?gaa_at=eafs&gaa_n=ASWzDAjoeppAMXJgqB5CELILgCeEAsnc7Mkjg3Fkv0APtdbZDypg431wQQyp&gaa_ts=6882fbf4&gaa_sig=YFzAPYYyXUHggRDs8U8eiABZbBfAKlvE5we1p3XQ9eJbFGihYx8D6OIFpFe3jEsWOTVCEgV3iUeMQ7jy6t-Gxg%3D%3D',
@@ -45,9 +51,15 @@ export const projects: PortfolioProject[] = [
 		title: 'Market reactions to Trump’s tweets',
 		publication: 'The Wall Street Journal',
 		description:
-			'An interactive analysis of market movement around presidential tweets, designed for quick pattern comparison.',
-		role: 'Data preparation, visual design, and front-end implementation.',
-		created: 'An interactive market analysis and its frontend implementation.',
+			'An interactive chart comparing changes in trade-sensitive stocks with the S&P 500 after Inauguration Day.',
+		role: 'I built the interactive with data supplied by the data team and implemented it in our WSJ style template.',
+		approach:
+			'I chose dates when Trump made notable comments and marked them on the chart. When readers hover over a marked date, a popup shows the comment and highlights both lines so they can compare how the selected stocks and the S&P 500 moved around that time.',
+		created:
+			'I used D3 to build a responsive chart that redraws when its container changes size. It compares the S&P 500 with a custom market-value-weighted index of selected trade-sensitive stocks.',
+		tools: 'D3, HTML, CSS, JavaScript, and the WSJ style template',
+		result:
+			'The story was not published, but the finished interactive is available as a standalone project.',
 		image: tweetsImage,
 		alt: 'D3.js interactive chart about market reactions to Trump’s tweets',
 		href: 'https://techman96.github.io/trump/',
@@ -60,9 +72,15 @@ export const projects: PortfolioProject[] = [
 		title: 'The biggest companies across America are cutting their workforces',
 		publication: 'The Wall Street Journal',
 		description:
-			'A data-backed look at how large U.S. companies reduced headcount even as business performance held up in many sectors.',
-		role: 'Analysis support and visual storytelling.',
-		created: 'Analysis support and visual storytelling for a data-backed story.',
+			'I analyzed how sales and employment changed over time at some of America’s largest companies.',
+		role: 'I worked with the reporter and editor to explore the data, shape the analysis, and build graphics for the story.',
+		approach:
+			'This was my first project. I started with a large set of raw data and an open-ended question: could I find a trend? I met with the reporter and editor to understand the story, explored the data, and brought what I found back to them. Comparing year-over-year changes in sales and employment made the patterns easier to see than plotting raw numbers. After reading the story draft, I highlighted the companies it mentioned in the charts.',
+		created:
+			'I built the graphics with WSJ’s graphics tool, then adjusted them in Illustrator for different screen sizes while keeping the callouts and dimensions in place. I ran the ai2html script and added the graphics to the story.',
+		tools: 'WSJ’s graphics tool, Illustrator, and ai2html',
+		result:
+			'The story and my graphics were published online and in print. The story also ranked among the top 10 most-read stories on our newsroom leaderboard.',
 		image: workforceImage,
 		alt: 'Scatter plot comparing sales and employee changes for S&P 500 companies',
 		href: 'https://www.wsj.com/business/the-biggest-companies-across-america-are-cutting-their-workforces-a0e8739a?gaa_at=eafs&gaa_n=ASWzDAitxEFOwGzYXaAAZnOoVQJ240x4p8U9Z3Kr06j83G9k1gak4S2I2kfe&gaa_ts=6882fbf4&gaa_sig=AVbO12IEZi0C4NymGfkYgYNP_xHE65QHKu4cEBTc0Kz3ivTRZNGl79r5VHbzWYI6JMXO0GJbUeUfjkfdO-ImTg%3D%3D',

@@ -74,10 +74,14 @@
 					<h2 id="approach-heading">My approach</h2>
 				</div>
 				<div class="section-content">
-					<p class="draft-prompt">
-						Add how you approached this project: the reporting, research, data, design, or technical
-						decisions that shaped the work.
-					</p>
+					{#if data.project.approach}
+						<p>{data.project.approach}</p>
+					{:else}
+						<p class="draft-prompt">
+							Add how you approached this project: the reporting, research, data, design, or
+							technical decisions that shaped the work.
+						</p>
+					{/if}
 				</div>
 			</section>
 
@@ -88,9 +92,14 @@
 				</div>
 				<div class="section-content">
 					<p>{data.project.created}</p>
-					<p class="draft-prompt">
-						Add useful details such as tools, methods, collaborators, or a specific part you built.
-					</p>
+					{#if data.project.tools}
+						<p><strong>Tools:</strong> {data.project.tools}</p>
+					{:else}
+						<p class="draft-prompt">
+							Add useful details such as tools, methods, collaborators, or a specific part you
+							built.
+						</p>
+					{/if}
 				</div>
 			</section>
 
