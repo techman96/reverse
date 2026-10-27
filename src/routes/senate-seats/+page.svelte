@@ -180,8 +180,8 @@
 		{
 			control: 'Party',
 			title: 'Incumbent party',
-			heading: 'Which party holds the seat?',
-			text: 'Four of the seats in this selection are Democratic-held and ten are Republican-held. Grouping the circles by incumbent party shows how the seats are divided in the reference graphic.'
+			heading: 'Which party currently holds the seat',
+			text: 'There are now 14 competitive states. This was not the battleground map most would have predicted at the beginning of the election cycle. It includes several states that are traditionally solidly Republican, such as Texas, Alaska and Kansas.'
 		},
 		{
 			control: 'Connections',
@@ -193,13 +193,13 @@
 			control: '2024 vote',
 			title: 'Two ways to read the same states',
 			heading: 'How each state voted in 2024',
-			text: 'Maine has a Republican-held Senate seat but voted Democratic in 2024. Michigan and Georgia show the reverse: Democratic-held seats in states that voted Republican.'
+			text: 'The past does not predict the future, but a state’s previous presidential performance is a key indicator of its partisan leaning. To capture a majority, Democrats must prevail in at least two states that Mr. Trump carried by at least 11 percentage points.'
 		},
 		{
 			control: 'Ratings',
 			title: 'Incumbent party',
-			heading: 'How the races were leaning',
-			text: 'The original graphic places seven states in the tossup category. Its ratings put Georgia and North Carolina on the Democratic side, even though both voted Republican for president in 2024.'
+			heading: 'How the races are leaning',
+			text: 'Political analysts at the Cook Political Report and advertising decisions by both parties suggest there are seven tossup states, but the map is constantly shifting. Republicans can keep the majority if they hold four of the tossup states.'
 		}
 	];
 	const ratingLabels = ['Likely Dem.', 'Lean Dem.', 'Tossup', 'Lean Rep.', 'Likely Rep.'];
@@ -243,6 +243,30 @@
 	const connectionProgress = $derived(Math.max(0, Math.min(1, progress.current - 1)));
 	const marginProgress = $derived(Math.max(0, Math.min(1, progress.current - 2)));
 	const ratingProgress = $derived(Math.max(0, Math.min(1, progress.current - 3)));
+	let hoveredState = $state<string | null>(null);
+	let focusedState = $state<string | null>(null);
+	let selectedState = $state<string | null>(null);
+	const highlightedState = $derived(hoveredState ?? focusedState ?? selectedState);
+	const highlightedRace = $derived(races.find((race) => race.state === highlightedState));
+
+	function stateOpacity(race: Race) {
+		return highlightedState && highlightedState !== race.state ? 0.15 : 1;
+	}
+
+	function pathOpacity(race: Race) {
+		return highlightedState ? (highlightedState === race.state ? 0.95 : 0.035) : 0.2;
+	}
+
+	function toggleState(stateName: string) {
+		focusedState = null;
+		selectedState = selectedState === stateName ? null : stateName;
+	}
+
+	function clearHighlight() {
+		hoveredState = null;
+		focusedState = null;
+		selectedState = null;
+	}
 
 	function rowPosition(race: Race) {
 		return {
@@ -462,7 +486,7 @@
 			<svg
 				class="race-graphic"
 				viewBox={`0 0 ${viewWidth} ${viewHeight}`}
-				role="img"
+				role="group"
 				aria-labelledby="race-title race-description"
 				data-stage={activeChapter}
 			>
@@ -487,18 +511,20 @@
 					{@const point = ratingProgress > 0 ? middlePosition(race) : currentPosition(race)}
 					{@const anchor = rowPosition(race)}
 					<path
+						class="party-link"
+						data-state={race.state}
 						d={`M ${anchor.x},${anchor.y} C ${anchor.x},${(anchor.y + point.y) / 2} ${point.x},${(anchor.y + point.y) / 2} ${point.x},${point.y}`}
 						fill="none"
 						stroke={partyColors[race.party]}
 						stroke-width={compact ? 5 : 9}
-						opacity={connectionProgress * 0.2}
+						opacity={connectionProgress * pathOpacity(race)}
 					/>
 					<circle
 						cx={anchor.x}
 						cy={anchor.y}
 						r={compact ? 7 : 12}
 						fill={partyColors[race.party]}
-						opacity={connectionProgress}
+						opacity={connectionProgress * stateOpacity(race)}
 					/>
 				{/each}
 				{#each races as race (race.state)}
@@ -506,11 +532,12 @@
 					{@const destination = currentPosition(race)}
 					<path
 						class="rating-link"
+						data-state={race.state}
 						d={`M ${middle.x},${middle.y} C ${middle.x},${(middle.y + destination.y) / 2} ${destination.x},${(middle.y + destination.y) / 2} ${destination.x},${destination.y}`}
 						fill="none"
 						stroke={ratingColors[race.ratingGroup]}
 						stroke-width={compact ? 5 : 9}
-						opacity={ratingProgress * 0.2}
+						opacity={ratingProgress * pathOpacity(race)}
 					/>
 					<circle
 						class="margin-node"
@@ -518,7 +545,7 @@
 						cy={middle.y}
 						r={compact ? 8 : 12}
 						fill={marginColors[race.marginGroup]}
-						opacity={ratingProgress}
+						opacity={ratingProgress * stateOpacity(race)}
 					/>
 				{/each}
 				<g
@@ -582,7 +609,38 @@
 					{@const baseRadius = compact ? 25 : 39}
 					{@const rowRadius = compact ? 9 : 15}
 					{@const finalRadius = compact ? 17 : 24}
-					<g class="state-node" transform={`translate(${point.x}, ${point.y})`}>
+					<g
+						class="state-node"
+						data-state={race.state}
+						class:highlighted={highlightedState === race.state}
+						transform={`translate(${point.x}, ${point.y})`}
+						opacity={stateOpacity(race)}
+						role="button"
+						tabindex="0"
+						aria-label={`${race.state}: ${race.party}-held seat; 2024 presidential margin: ${marginDescriptions[race.marginGroup]}; reference rating: ${ratingDescriptions[race.ratingGroup]}`}
+						aria-pressed={selectedState === race.state}
+						onpointerenter={(event) => {
+							if (event.pointerType === 'mouse') hoveredState = race.state;
+						}}
+						onpointerleave={() => {
+							hoveredState = null;
+						}}
+						onfocus={() => {
+							focusedState = race.state;
+						}}
+						onblur={() => {
+							focusedState = null;
+						}}
+						onclick={() => toggleState(race.state)}
+						onkeydown={(event) => {
+							if (event.key === 'Enter' || event.key === ' ') {
+								event.preventDefault();
+								toggleState(race.state);
+							} else if (event.key === 'Escape') {
+								clearHighlight();
+							}
+						}}
+					>
 						<circle
 							r={baseRadius +
 								(rowRadius - baseRadius) * connectionProgress +
@@ -604,6 +662,26 @@
 						>
 					</g>
 				{/each}
+				{#if highlightedRace}
+					<g class="state-details" aria-hidden="true" pointer-events="none">
+						<rect
+							x="4"
+							y={compact ? 429 : 454}
+							width={compact ? 412 : 300}
+							height={compact ? 40 : 62}
+							rx="3"
+						/>
+						<text x="12" y={compact ? 440 : 472} font-weight="700"
+							>{highlightedRace.state} · {highlightedRace.party}-held</text
+						>
+						<text x="12" y={compact ? 452 : 488}
+							>2024: {marginDescriptions[highlightedRace.marginGroup]}</text
+						>
+						<text x="12" y={compact ? 464 : 504}
+							>Reference rating: {ratingDescriptions[highlightedRace.ratingGroup]}</text
+						>
+					</g>
+				{/if}
 			</svg>
 			<p class="graphic-note">
 				{activeChapter === 4
@@ -766,6 +844,23 @@
 		height: auto;
 		aspect-ratio: 800 / 520;
 	}
+	.state-node {
+		cursor: pointer;
+		outline: none;
+	}
+	.state-node.highlighted > circle,
+	.state-node:focus-visible > circle {
+		stroke: var(--color-ink);
+		stroke-width: 2;
+	}
+	.state-details {
+		fill: var(--color-ink);
+		font-size: 12px;
+	}
+	.state-details rect {
+		fill: var(--color-paper);
+		fill-opacity: 0.97;
+	}
 	.graphic-heading {
 		fill: var(--color-ink);
 		font-size: 18px;
@@ -887,6 +982,9 @@
 		}
 		.graphic-heading {
 			font-size: 15px;
+		}
+		.state-details {
+			font-size: 11px;
 		}
 		.anchor-labels {
 			font-size: 11px;
