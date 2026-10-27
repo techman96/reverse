@@ -45,7 +45,7 @@
 					<p class="eyebrow">Selected work</p>
 					<h2 id="work-heading">Stories, graphics &amp; interactives</h2>
 				</div>
-				<span class="section-note">A selection of published work</span>
+				<span class="section-note">Selected newsroom work</span>
 			</div>
 
 			<div class="project-grid featured-grid">
@@ -97,6 +97,9 @@
 						</a>
 						<div class="project-copy">
 							<p class="project-meta">{project.publication}</p>
+							{#if project.highlight}
+								<p class="project-role"><strong>{project.highlight}</strong></p>
+							{/if}
 							<h3>
 								<a class="project-title-link" href={`/work/${project.slug}`}>{project.title}</a>
 							</h3>
@@ -147,16 +150,18 @@
 		<section class="about" id="about" aria-labelledby="about-heading">
 			<div>
 				<p class="eyebrow">About</p>
-				<h2 id="about-heading">Reporting instincts.<br />Builder’s mindset.</h2>
+				<h2 id="about-heading" hidden>Reporting instincts.<br />Builder’s mindset.</h2>
 			</div>
 			<div class="about-copy">
 				<p>
-					I work across reporting and development: finding the story in the evidence, then building
-					the graphics and interactive experiences that help readers understand it.
+					Muhammad Shumail is a visual data journalist for CoStar News and Homes.com based in
+					Arlington, Virginia. His work includes building charts, maps and interactive graphics that
+					turn CoStar Group's commercial and residential real estate data into visual stories.
 				</p>
 				<p>
-					My work spans breaking news, data analysis, mapping, newsroom tools, and independent
-					projects.
+					He previously interned on The Wall Street Journal graphics desk, covering business and
+					markets, and holds a master's degree from the Craig Newmark Graduate School of Journalism
+					at CUNY.
 				</p>
 				<a class="text-link" href="mailto:muhammad.shumail48@journalism.cuny.edu">
 					Contact me <span aria-hidden="true">&rarr;</span>

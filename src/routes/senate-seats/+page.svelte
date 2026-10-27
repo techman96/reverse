@@ -170,8 +170,13 @@
 		<p class="eyebrow">Recreation study / In progress</p>
 		<h1>Senate seats</h1>
 		<p class="description">
-			This project is in development. The finished graphic, original source credit, data sources,
-			and implementation notes will appear here.
+			This project is in development. The finished graphic and implementation notes will appear
+			here.
+		</p>
+		<p class="description">
+			Source: <a href="https://www.cookpolitical.com/" target="_blank" rel="noopener noreferrer"
+				>Cook Political Report</a
+			>.
 		</p>
 	</header>
 

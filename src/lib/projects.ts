@@ -19,6 +19,7 @@ export type PortfolioProject = {
 	created: string;
 	tools?: string;
 	result?: string;
+	highlight?: string;
 	image: string;
 	alt: string;
 	href?: string;
@@ -119,6 +120,8 @@ export const projects: PortfolioProject[] = [
 		created:
 			'When sale data is available, each property card includes a bar chart comparing its price per square foot with the local market average. I used one shared scale so readers can compare locations.',
 		tools: 'Mapbox GL JS, JavaScript, HTML, and CSS',
+		result:
+			'The template provides a reusable starting point for location-based stories, with configurable chapters, map views, and annotations.',
 		image: iceImage,
 		alt: 'Scrollytelling map template showing ICE warehouse acquisitions',
 		href: 'https://techman96.github.io/ice/',
@@ -141,15 +144,25 @@ export const projects: PortfolioProject[] = [
 			'It received more than 15,000 views on the Homes.com website and was one of the site’s top-read stories. It was also named Enterprise Story of the Month.',
 		image: silverImage,
 		alt: 'Dot plot comparing population share and share of owner-occupied households by age group; adults 65 and older make up 18% of the population and 34.1% of homeowners.',
+		highlight: '15,000+ views · Enterprise Story of the Month',
+		href: 'https://www.homes.com/news/chart-of-the-day-what-to-expect-from-the-upcoming-silver-tsunami-of-home-listings/315667413/',
+		linkLabel: 'Read the story',
 		featured: false
 	},
 	{
 		slug: 'hoas-back-on-the-rise',
 		title: 'HOAs are back on the rise',
 		publication: 'Homes.com',
-		description: 'A multi-chart package showing HOA growth in new single-family communities.',
-		role: 'Designed a multi-chart analytical package based on in-depth data analysis.',
-		created: 'A multi-chart analytical package about HOA growth.',
+		description:
+			'A series of charts showing how HOA construction and home sales have changed over time, across regions, and at different price points.',
+		role: 'I requested the data from NAHB, analyzed it, and built the charts in Flourish.',
+		approach:
+			'I split the data into several views rather than trying to fit everything into one chart. A national comparison showed construction inside and outside HOAs, while regional charts showed where most of that building was happening. I used a heatmap to show sales over time and separate line charts to compare HOA and non-HOA sales within each price range.',
+		created:
+			'I built a national construction comparison, regional stacked bar charts, a sales heatmap, and small-multiple line charts by sale price.',
+		tools: 'Flourish',
+		result:
+			'Homes.com News published the charts with the story, showing how HOA construction and sales differed across regions and price ranges.',
 		image: hoaImage,
 		alt: 'Chart about the rise of homeowners associations in new single-family construction',
 		href: 'https://www.homes.com/news/homeowners-associations-are-back-on-the-rise-in-single-family-construction/1479378706/',
@@ -161,9 +174,15 @@ export const projects: PortfolioProject[] = [
 		title: 'Drone strikes in Pakistan',
 		publication: 'Independent capstone project',
 		description:
-			'A long-form interactive combining mapping, chronology, and sourcing notes for transparent reporting on drone strikes.',
-		role: 'Built the project end to end, from data pipeline to front end.',
-		created: 'A long-form interactive with mapping, chronology, and sourcing notes.',
+			'An independent capstone mapping drone strikes in Pakistan, their locations, and reported civilian deaths.',
+		role: 'I found the data, contacted two independent nonprofits tracking strikes and civilian deaths, and built the project.',
+		approach:
+			'This was my first mapping project. I used MapLibre to put the strike locations on a map and connect the geographic data with information about reported civilian deaths.',
+		created:
+			'I built the map with MapLibre and used D3 for a chart that lets readers switch between yearly drone strikes and reported civilian deaths.',
+		tools: 'MapLibre, D3, JavaScript, HTML, and CSS',
+		result:
+			'I uploaded the project to my college’s capstone repository, where other students have downloaded it more than 200 times.',
 		image: droneImage,
 		alt: 'Map-based interactive about drone strikes in Pakistan',
 		href: 'https://techman96.github.io/reaper/',
@@ -176,9 +195,15 @@ export const projects: PortfolioProject[] = [
 		title: 'Map of unpaved roads in San Diego',
 		publication: 'inewsource',
 		description:
-			'A service journalism map that helps residents locate and inspect unpaved roads across San Diego County.',
-		role: 'Frontend mapping implementation and interaction design.',
-		created: 'An interactive map of unpaved roads across San Diego County.',
+			'An interactive map helping residents find unpaved roads near them in San Diego County.',
+		role: 'I suggested adding an interactive map so readers could find the roads rather than relying on text descriptions alone. I found the GeoJSON files and coordinates, mapped the roads in Mapbox, and added search and popup features.',
+		approach:
+			'I mapped each road from its starting point to its endpoint. I added a search feature so readers could find their area and explore nearby unpaved roads.',
+		created:
+			'A searchable map with road lines and popups showing the starting and ending streets for each road.',
+		tools: 'Mapbox and GeoJSON',
+		result:
+			'inewsource published the map with its story about San Diego’s unpaved roads. The story received about 3,000 more views than the site’s average story.',
 		image: sanDiegoImage,
 		alt: 'Map showing unpaved roads across San Diego County',
 		href: 'https://inewsource.org/2024/06/20/map-san-diego-unpaved-roads/',
@@ -188,15 +213,20 @@ export const projects: PortfolioProject[] = [
 	},
 	{
 		slug: 'ai-news-aggregation-app',
-		title: 'AI News Aggregation App',
-		publication: 'Independent project',
+		title: 'News Aggregation App',
+		publication: 'AI-assisted summer project',
 		description:
-			'A React and TypeScript app for discovering and following news from multiple sources, with a personalized feed and account features in beta.',
-		role: 'Built the app with a hosted backend, database, authentication, and news API integrations.',
+			'A React and TypeScript news app with country switching, account features, and notification settings.',
+		role: 'I developed the app with AI coding assistance as a summer project, using NewsAPI.org for stories and Supabase for the database and authentication.',
+		approach:
+			'I used NewsAPI.org to bring stories into the app and added an option to switch between countries. I connected Supabase for account authentication and the database, then hosted the app on Vercel.',
 		created:
-			'A React and TypeScript news app with a personalized feed, account features, a hosted backend, database, authentication, and news API integrations.',
+			'I built the news feed, country switching, account features, and notification settings in React and TypeScript.',
+		tools: 'React, TypeScript, NewsAPI.org, Supabase, and Vercel',
+		result:
+			'The app is hosted on Vercel and is available to invited testers through Google Play’s closed beta, ahead of a public release.',
 		image: appImage,
-		alt: 'Interface of the AI News Aggregation App',
+		alt: 'Interface of the News Aggregation App',
 		featured: false
 	}
 ] as const;

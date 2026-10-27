@@ -44,7 +44,6 @@
 
 		<figure class="project-image">
 			<img src={data.project.image} alt={data.project.alt} />
-			<figcaption>Project image</figcaption>
 		</figure>
 
 		<div class="case-study">
@@ -273,13 +272,6 @@
 		width: 100%;
 		max-height: 42rem;
 		object-fit: contain;
-	}
-
-	.project-image figcaption {
-		padding: 0.75rem 1rem;
-		border-top: 1px solid var(--color-rule);
-		color: var(--color-muted);
-		font-size: 0.72rem;
 	}
 
 	.case-study {
