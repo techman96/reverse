@@ -7,6 +7,7 @@ import hoaImage from '#lib/assets/images/hoa.jpeg';
 import droneImage from '#lib/assets/images/drone.png';
 import sanDiegoImage from '#lib/assets/images/san diego.png';
 import appImage from '#lib/assets/images/app.jpg';
+import silverImage from '#lib/assets/images/silver (1).jpeg';
 
 export type PortfolioProject = {
 	slug: string;
@@ -92,9 +93,14 @@ export const projects: PortfolioProject[] = [
 		title: 'How childhood neighborhoods shape credit scores',
 		publication: 'The Wall Street Journal',
 		description:
-			'Data-driven reporting on how childhood location is linked to adult credit outcomes.',
-		role: 'Data analysis and map-oriented visual framing.',
-		created: 'Data analysis and map-oriented visual framing for the story.',
+			'I created county-level maps showing how credit scores varied with people’s childhood neighborhoods.',
+		role: 'I built the maps using QGIS and WSJ’s map templates and visual style.',
+		approach:
+			'I joined the data using county codes, then added county boundaries and water bodies as map layers in QGIS. I followed WSJ’s map style to keep the maps clear and consistent with the story.',
+		created:
+			'I exported the maps from QGIS, adjusted them in Illustrator, then ran the ai2html script to make them responsive for the web.',
+		tools: 'QGIS, WSJ map templates, Illustrator, and ai2html',
+		result: 'The maps were published with the WSJ story online.',
 		image: creditImage,
 		alt: 'Map of average credit scores across U.S. counties',
 		href: 'https://www.wsj.com/economy/credit-score-childhood-neighborhood-impact-dfaed7b8?gaa_at=eafs&gaa_n=ASWzDAj8uGe6YD7YCwo9SgSRPnRqlusZMBN-VSrZwLJXEK4UJ68SLEel0bQx&gaa_ts=6882fbf4&gaa_sig=mVO3ci6sXq1gqNCln5tzasggM-y-YcK40mATQA1tWtNOTrIWlwYGAY7rGHRzTXyE1x26bEilhTK0zyNTs2FvRQ%3D%3D',
@@ -103,16 +109,38 @@ export const projects: PortfolioProject[] = [
 	},
 	{
 		slug: 'ice-warehouse-acquisitions',
-		title: 'ICE warehouse acquisitions across the U.S.',
+		title: 'Scrollytelling map template for location-based stories',
 		publication: 'CoStar',
 		description:
-			'A scrollytelling template mapping ICE warehouse acquisitions across the United States.',
-		role: 'Built the core template and map interactions.',
-		created: 'A scrollytelling template and map interactions.',
+			'A reusable Mapbox scrollytelling template, built around an example mapping ICE-linked warehouse acquisitions across the United States.',
+		role: 'I built the template with Mapbox, JavaScript, HTML, and CSS, including custom map styles and layers.',
+		approach:
+			'I set up each story chapter with its own camera position, annotation, and map-layer settings. As readers scroll, the active chapter flies the map to the next location and updates the map note.',
+		created:
+			'When sale data is available, each property card includes a bar chart comparing its price per square foot with the local market average. I used one shared scale so readers can compare locations.',
+		tools: 'Mapbox GL JS, JavaScript, HTML, and CSS',
 		image: iceImage,
 		alt: 'Scrollytelling map template showing ICE warehouse acquisitions',
 		href: 'https://techman96.github.io/ice/',
 		linkLabel: 'Open the project',
+		featured: false
+	},
+	{
+		slug: 'silver-tsunami-home-listings',
+		title: 'What to expect from the upcoming “silver tsunami” of home listings',
+		publication: 'Homes.com News',
+		description:
+			'I pitched a story about how homes owned by older Americans could affect housing markets differently across the country.',
+		role: 'I pitched the story, found and analyzed the data, and built a map, dot plot, and quadrant chart.',
+		approach:
+			'I analyzed data across 40 metro areas. With so many markets and measures to compare, I used a quadrant chart to make the relationship between older homeowners and younger adults forming households easier to see. A map and dot plot helped show the geographic patterns and differences between age groups.',
+		created:
+			'I built the map, dot plot, and quadrant chart in Flourish to compare housing markets and make the patterns in the data easier to see.',
+		tools: 'Flourish',
+		result:
+			'It received more than 15,000 views on the Homes.com website and was one of the site’s top-read stories. It was also named Enterprise Story of the Month.',
+		image: silverImage,
+		alt: 'Dot plot comparing population share and share of owner-occupied households by age group; adults 65 and older make up 18% of the population and 34.1% of homeowners.',
 		featured: false
 	},
 	{
