@@ -460,7 +460,7 @@
 <main>
 	<a class="back-link" href="/#work">&larr; Back to work</a>
 	<header class="study-heading">
-		<p class="eyebrow">Recreation study / First pass</p>
+		<p class="eyebrow">Recreation study</p>
 		<h1>Senate seats</h1>
 		<p class="introduction">
 			Who holds a Senate seat and how a state votes for president can tell different stories.
@@ -710,17 +710,20 @@
 	</div>
 
 	<footer class="study-footer">
+		<p>Built with Svelte 5 and SVG.</p>
 		<p>
-			Original graphic: <a href="https://www.nytimes.com/" target="_blank" rel="noopener noreferrer"
-				>The New York Times</a
+			Original graphic and source text: <a
+				href="https://www.nytimes.com/interactive/2026/10/08/us/elections/senate-races-midterms-battleground-states.html"
+				target="_blank"
+				rel="noopener noreferrer">The New York Times</a
 			>. Data source credited in the reference:
 			<a href="https://www.cookpolitical.com/" target="_blank" rel="noopener noreferrer"
 				>Cook Political Report</a
 			>.
 		</p>
 		<p>
-			State selection, margin categories, and race ratings transcribed from the supplied reference.
-			This first pass does not reproduce live ratings or exact vote margins.
+			State selection, margin categories, and race ratings follow the original graphic. This
+			recreation does not provide live ratings or exact vote margins.
 		</p>
 		<details>
 			<summary>State data</summary>

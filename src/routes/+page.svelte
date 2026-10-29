@@ -140,7 +140,7 @@
 					{/each}
 				</div>
 				<div class="recreation-info">
-					<p class="project-meta">In progress / Recreation study</p>
+					<p class="project-meta">Recreation study / Svelte</p>
 					<h3>Senate seats</h3>
 					<span class="project-links">View study <span aria-hidden="true">&rarr;</span></span>
 				</div>
